@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Discover Olive: Your family's nu...</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #ffffff;
+      margin: 0;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .page-card {
+      background: #f0f8f0;
+      max-width: 1200px;
+      margin: 20px auto;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+
+    nav, .hero, .phone {
+      background: #f0f8f0;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      padding: 20px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 40px;
+      border-bottom: 1px solid #d8ecd8;
+      position: sticky;
+      top: 0;
+      background: #f0f8f0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 22px;
+      font-weight: 700;
+      color: #2d2d2d;
+      text-decoration: none;
+    }
+
+    .olive-icon { width: 32px; height: 32px; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 17px;
+      color: #333;
+      text-decoration: none;
+      font-weight: 400;
+    }
+    .nav-links a:hover { color: #000; }
+
+    .dropdown-arrow {
+      display: inline-block;
+      margin-left: 3px;
+      font-size: 20px;
+      color: #666;
+    }
+
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+
+    .nav-signin {
+      font-size: 17px;
+      color: #333;
+      text-decoration: none;
+      font-weight: 400;
+    }
+
+    .btn-get-olive {
+      background: #2d2d2d;
+      color: #fff;
+      border: none;
+      border-radius: 100px;
+      padding: 10px 20px;
+      font-size: 17px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+    .btn-get-olive:hover { background: #111; }
+    .olive-icon {
+      width: 100px;
+      height: 100px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 60px 20px 0;
+      min-height: 100vh;
+      background: #f0f8f0;
+    }
+
+    .social-proof {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 36px;
+    }
+
+    .avatars { display: flex; }
+
+    .avatars img, .avatar-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      margin-left: -8px;
+      object-fit: cover;
+    }
+    .avatars .avatar-circle:first-child { margin-left: 0; }
+
+    .avatar-circle {
+      background: #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #777;
+    }
+
+    .social-proof-text { font-size: 13px; color: #666; font-weight: 400; }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px;
+      font-weight: 700;
+      line-height: 1.15;
+      color: #2d2d2d;
+      max-width: 600px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 15px;
+      color: #666;
+      max-width: 400px;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #2d2d2d;
+      color: #fff;
+      border-radius: 100px;
+      padding: 13px 28px;
+      font-size: 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .btn-download svg { width: 16px; height: 16px; fill: #fff; }
+
+    /* ── PHONE MOCKUP ── */
+    .phone-wrapper {
+      position: relative;
+      width: 340px;
+      margin: 0 auto;
+    }
+
+    .bg-products {
+      position: absolute;
+      top: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 620px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      z-index: 0;
+      filter: blur(2px);
+      opacity: 0.45;
+    }
+
+    .bg-product {
+      width: 72px;
+      height: 72px;
+      border-radius: 12px;
+      background: #ddd;
+      flex-shrink: 0;
+    }
+
+    /* ── PHONE FRAME ── */
+    .phone {
+      position: relative;
+      z-index: 1;
+      background: #fff;
+      border-radius: 28px;
+      width: 320px;
+      margin: 0 auto;
+      box-shadow: 0 20px 80px rgba(0,0,0,0.15);
+      overflow: hidden;
+      border: 6px solid #e8e8e8;
+      padding: 0;
+    }
+
+    .phone-notch {
+      width: 80px;
+      height: 20px;
+      background: #1a1a1a;
+      border-radius: 0 0 14px 14px;
+      margin: 0 auto 10px;
+    }
+
+    /* ── THUMBNAIL STRIP ── */
+    .thumb-strip-outer {
+      overflow: hidden;
+      padding: 0 12px 12px;
+    }
+
+    .phone-thumb-row {
+      display: flex;
+      gap: 6px;
+      transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+      /* 5 thumbs × 66px + 4 gaps × 6px = 354px */
+      width: 354px;
+    }
+
+    .phone-thumb {
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      background: #f0f0f0;
+      flex-shrink: 0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .phone-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .phone-thumb.active {
+      outline: 2.5px solid #3a7a28;
+      outline-offset: 1px;
+    }
+
+    /* ── PRODUCT CARD CAROUSEL ── */
+    .card-track-outer {
+      overflow: hidden;
+      margin: 0 12px 12px;
+      border-radius: 16px;
+    }
+
+    .card-track {
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* each card = 296px (320 - 12 - 12) */
+    .phone-card {
+      flex: 0 0 296px;
+      width: 296px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+
+    .phone-card-top {
+      display: flex;
+      gap: 10px;
+      padding: 12px 12px 0;
+      align-items: flex-start;
+    }
+
+    .product-img {
+      width: 52px;
+      height: 52px;
+      border-radius: 10px;
+      background: #f5e9d6;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      overflow: hidden;
+    }
+
+    .product-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    .product-info { flex: 1; }
+
+    .product-name {
+      font-size: 11px;
+      font-weight: 600;
+      color: #222;
+      line-height: 1.3;
+      margin-bottom: 2px;
+    }
+
+    .product-brand { font-size: 10px; color: #999; }
+
+    .product-score-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+    }
+
+    .score-badge {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      border-radius: 100px;
+      padding: 3px 8px;
+    }
+
+    .score-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .score-text { font-size: 11px; font-weight: 700; }
+    .score-label { font-size: 9px; }
+
+    .card-actions { display: flex; gap: 8px; }
+    .card-actions svg { width: 16px; height: 16px; stroke: #ccc; fill: none; }
+
+    /* ── OLIVER SAYS CAROUSEL ── */
+    .oliver-track-outer {
+      overflow: hidden;
+      margin: 0 12px 12px;
+      border-radius: 12px;
+    }
+
+    .oliver-track {
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .oliver-says {
+      flex: 0 0 296px;
+      width: 296px;
+      background: #f9f9f6;
+      border-radius: 12px;
+      padding: 10px;
+    }
+
+    .oliver-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .oliver-avatar {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #c8e6c0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      overflow: hidden;
+    }
+
+    .oliver-avatar img { width: 12px; height: 12px; object-fit: contain; filter: brightness(0) invert(0.3) sepia(1) hue-rotate(70deg); }
+
+    .oliver-title { font-size: 10px; font-weight: 600; color: #333; }
+
+    .oliver-text { font-size: 9px; color: #666; line-height: 1.55; }
+
+    .breakdown-label { font-size: 10px; color: #999; padding: 6px 12px 10px; }
+
+    /* ── SECTION TEASER ── */
+    .section-teaser {
+      text-align: center;
+      padding: 80px 20px 40px;
+    }
+
+    .section-teaser h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      color: #2d2d2d;
+    }
+
+    .olive-leaf-icon { display: inline-block; margin-left: 10px; }
+
+    /* nav logo image */
+    .nav-olive-img { height: 40px; width: auto; }
+  </style>
+</head>
+<body>
+<div class="page-card">
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">
+                <img src="olive.png" 
+                    alt="Olive Logo" 
+                    class="olive-icon"/>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#">Solutions <span class="dropdown-arrow">▾</span></a></li>
+      <li><a href="#">Features</a></li>
+      <li><a href="#">Pricing</a></li>
+      <li><a href="#">Blog <span class="dropdown-arrow">▾</span></a></li>
+      <li><a href="#">Restaurants</a></li>
+      <li><a href="#">Food <span class="dropdown-arrow">▾</span></a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a class="nav-signin" href="#">Sign in</a>
+      <a class="btn-get-olive" href="#">Get Olive &nbsp;→</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <!-- Social proof -->
+    <div class="social-proof">
+      <div class="avatars">
+        <div class="avatar-circle" style="background:#f4c2a1;margin-left:0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" fill="#c97a50"/><ellipse cx="12" cy="20" rx="7" ry="4" fill="#c97a50"/></svg>
+        </div>
+        <div class="avatar-circle" style="background:#b5cce4;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" fill="#6a99c0"/><ellipse cx="12" cy="20" rx="7" ry="4" fill="#6a99c0"/></svg>
+        </div>
+        <div class="avatar-circle" style="background:#d4b8e0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" fill="#9b6cb5"/><ellipse cx="12" cy="20" rx="7" ry="4" fill="#9b6cb5"/></svg>
+        </div>
+        <div class="avatar-circle" style="background:#f9d8a0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" fill="#d4a030"/><ellipse cx="12" cy="20" rx="7" ry="4" fill="#d4a030"/></svg>
+        </div>
+        <div class="avatar-circle" style="background:#e8e8e8;width:32px;height:32px;">
+          <span style="font-size:9px;color:#888;">···</span>
+        </div>
+      </div>
+      <span class="social-proof-text">Trusted by thousands of healthy families</span>
+    </div>
+
+    <!-- Headline -->
+    <h1>The Safest Way to<br>Shop for Groceries</h1>
+
+    <!-- Subtext -->
+    <p>Use the Olive Food Scanner App to Instantly Eliminate Harmful Ingredients from Your Family's Diet and Get Expert-Backed Food Insights</p>
+
+    <!-- CTA -->
+    <a class="btn-download" href="#">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+      </svg>
+      Download for iOS
+    </a>
+
+    <!-- Phone mockup + background product images -->
+    <div class="phone-wrapper">
+
+      <!-- Blurred background product images -->
+      <div class="bg-products">
+        <div class="bg-product" style="background:#e8d5c0;"></div>
+        <div class="bg-product" style="background:#d4e8d0;"></div>
+        <div class="bg-product" style="background:#c0d4e8;"></div>
+        <div class="bg-product" style="background:#e8e0c0;"></div>
+        <div class="bg-product" style="background:#e0c0e8;"></div>
+        <div class="bg-product" style="background:#c0e8e0;"></div>
+        <div class="bg-product" style="background:#e8c0c0;"></div>
+      </div>
+
+      <!-- Phone frame -->
+      <div class="phone">
+        <div class="phone-notch"></div>
+
+        <!-- ── THUMBNAIL STRIP ── -->
+        <div class="thumb-strip-outer">
+          <div class="phone-thumb-row" id="thumbRow">
+
+            <!-- Thumb 1: Fig & Olive Crackers -->
+            <div class="phone-thumb active" id="th0">
+              <img src="https://www.lesleystowe.com/wp-content/uploads/2021/04/raincoast-crisps-fig-and-olive_US-1.png"
+                   alt="Fig Olive" onerror="this.remove();this.parentElement.style.fontSize='20px';this.parentElement.textContent='🍪'"/>
+            </div>
+
+            <!-- Thumb 2: Olipop Strawberry Vanilla -->
+            <div class="phone-thumb" id="th1">
+              <img src="strawberry.png"
+                   alt="Olipop" onerror="this.remove();this.parentElement.style.fontSize='20px';this.parentElement.textContent='🥤'"/>
+            </div>
+
+            <!-- Thumb 3: Oreo Double Stuf -->
+            <div class="phone-thumb" id="th2">
+              <img src="oreo.png"
+                   alt="Oreo" onerror="this.remove();this.parentElement.style.fontSize='20px';this.parentElement.textContent='🍪'"/>
+            </div>
+
+            <!-- Thumb 4: Organic Valley Whole Milk -->
+            <div class="phone-thumb" id="th3">
+              <img src="whole_milk.png"
+                   alt="Milk" onerror="this.remove();this.parentElement.style.fontSize='20px';this.parentElement.textContent='🥛'"/>
+            </div>
+
+            <!-- Thumb 5: Suja Green Smoothie -->
+            <div class="phone-thumb" id="th4">
+              <img src="green_smoothie.png"
+                   alt="Smoothie" onerror="this.remove();this.parentElement.style.fontSize='20px';this.parentElement.textContent='🥬'"/>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── PRODUCT CARDS CAROUSEL ── -->
+        <div class="card-track-outer">
+          <div class="card-track" id="cardTrack">
+
+            <!-- Card 1: Fig & Olive Crackers -->
+            <div class="phone-card">
+              <div class="phone-card-top">
+                <div class="product-img">
+                  <img src="https://www.lesleystowe.com/wp-content/uploads/2021/04/raincoast-crisps-fig-and-olive_US-1.png"
+                       alt="" onerror="this.remove();this.parentElement.textContent='🍪'"/>
+                </div>
+                <div class="product-info">
+                  <div class="product-name">Fig and Olive Crackers, Fig and Olive</div>
+                  <div class="product-brand">Lesley Stowe</div>
+                </div>
+              </div>
+              <div class="product-score-row">
+                <div class="score-badge" style="background:#ffeaea;">
+                  <div class="score-dot" style="background:#e55;"></div>
+                  <span class="score-text" style="color:#e55;">46/100</span>
+                  <span class="score-label" style="color:#e55;">Avoid</span>
+                </div>
+                <div class="card-actions">
+                  <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke-width="1.5"/></svg>
+                  <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3" stroke-width="1.5"/><circle cx="6" cy="12" r="3" stroke-width="1.5"/><circle cx="18" cy="19" r="3" stroke-width="1.5"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" stroke-width="1.5"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" stroke-width="1.5"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: Olipop Strawberry Vanilla -->
+            <div class="phone-card">
+              <div class="phone-card-top">
+                <div class="product-img">
+                  <img src="strawberry.png"
+                       alt="" onerror="this.remove();this.parentElement.textContent='🥤'"/>
+                </div>
+                <div class="product-info">
+                  <div class="product-name">Strawberry Vanilla Sparkling Tonic</div>
+                  <div class="product-brand" style="color:#78b84a;">Olipop</div>
+                </div>
+              </div>
+              <div class="product-score-row">
+                <div class="score-badge" style="background:#e8f5e3;">
+                  <div class="score-dot" style="background:#44af38;"></div>
+                  <span class="score-text" style="color:#288020;">100/100</span>
+                  <span class="score-label" style="color:#288020;">Excellent</span>
+                </div>
+                <div class="card-actions">
+                  <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke-width="1.5"/></svg>
+                  <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3" stroke-width="1.5"/><circle cx="6" cy="12" r="3" stroke-width="1.5"/><circle cx="18" cy="19" r="3" stroke-width="1.5"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" stroke-width="1.5"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" stroke-width="1.5"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Oreo Double Stuf -->
+            <div class="phone-card">
+              <div class="phone-card-top">
+                <div class="product-img" style="background:#1a1a1a;">
+                  <img src="oreo.png"
+                       alt="" onerror="this.remove();this.parentElement.textContent='🍪'"/>
+                </div>
+                <div class="product-info">
+                  <div class="product-name">Oreo Double Stuf Sandwich Cookies</div>
+                  <div class="product-brand">Nabisco</div>
+                </div>
+              </div>
+              <div class="product-score-row">
+                <div class="score-badge" style="background:#fff3e0;">
+                  <div class="score-dot" style="background:#e07820;"></div>
+                  <span class="score-text" style="color:#c06010;">32/100</span>
+                  <span class="score-label" style="color:#c06010;">Avoid</span>
+                </div>
+                <div class="card-actions">
+                  <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke-width="1.5"/></svg>
+                  <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3" stroke-width="1.5"/><circle cx="6" cy="12" r="3" stroke-width="1.5"/><circle cx="18" cy="19" r="3" stroke-width="1.5"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" stroke-width="1.5"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" stroke-width="1.5"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4: Organic Valley Whole Milk -->
+            <div class="phone-card">
+              <div class="phone-card-top">
+                <div class="product-img" style="background:#eef4f8;">
+                  <img src="whole_milk.png"
+                       alt="" onerror="this.remove();this.parentElement.textContent='🥛'"/>
+                </div>
+                <div class="product-info">
+                  <div class="product-name">Whole Milk, Organic Valley</div>
+                  <div class="product-brand" style="color:#78b84a;">Organic Valley</div>
+                </div>
+              </div>
+              <div class="product-score-row">
+                <div class="score-badge" style="background:#e8f5e3;">
+                  <div class="score-dot" style="background:#44af38;"></div>
+                  <span class="score-text" style="color:#288020;">88/100</span>
+                  <span class="score-label" style="color:#288020;">Good</span>
+                </div>
+                <div class="card-actions">
+                  <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke-width="1.5"/></svg>
+                  <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3" stroke-width="1.5"/><circle cx="6" cy="12" r="3" stroke-width="1.5"/><circle cx="18" cy="19" r="3" stroke-width="1.5"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" stroke-width="1.5"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" stroke-width="1.5"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 5: Suja Green Smoothie -->
+            <div class="phone-card">
+              <div class="phone-card-top">
+                <div class="product-img" style="background:#d4f0d4;">
+                  <img src="green_smoothie.png"
+                       alt="" onerror="this.remove();this.parentElement.textContent='🥬'"/>
+                </div>
+                <div class="product-info">
+                  <div class="product-name">Green Detox Smoothie Cold Pressed</div>
+                  <div class="product-brand" style="color:#78b84a;">Suja Organic</div>
+                </div>
+              </div>
+              <div class="product-score-row">
+                <div class="score-badge" style="background:#e8f5e3;">
+                  <div class="score-dot" style="background:#44af38;"></div>
+                  <span class="score-text" style="color:#288020;">95/100</span>
+                  <span class="score-label" style="color:#288020;">Excellent</span>
+                </div>
+                <div class="card-actions">
+                  <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke-width="1.5"/></svg>
+                  <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3" stroke-width="1.5"/><circle cx="6" cy="12" r="3" stroke-width="1.5"/><circle cx="18" cy="19" r="3" stroke-width="1.5"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" stroke-width="1.5"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" stroke-width="1.5"/></svg>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /card-track -->
+        </div>
+
+        <!-- ── OLIVER SAYS CAROUSEL ── -->
+        <div class="oliver-track-outer">
+          <div class="oliver-track" id="oliverTrack">
+
+            <div class="oliver-says">
+              <div class="oliver-header">
+                <div class="oliver-avatar">
+                  <img src="https://www.oliveapp.com/favicon.ico" alt="" onerror="this.remove();this.parentElement.textContent='🌿'"/>
+                </div>
+                <span class="oliver-title">Oliver Says:</span>
+              </div>
+              <p class="oliver-text">"This product's low score mainly comes from the processed sugars, like honey and brown sugar, which can impact your family's health when consumed frequently, especially for kids who are still developing. Several additives make this a choice to consider more carefully."</p>
+            </div>
+
+            <div class="oliver-says">
+              <div class="oliver-header">
+                <div class="oliver-avatar">
+                  <img src="strawberry.png" alt="" onerror="this.remove();this.parentElement.textContent='🌿'"/>
+                </div>
+                <span class="oliver-title">Oliver Says:</span>
+              </div>
+              <p class="oliver-text">"This drink's high score is thanks to its simple and wholesome ingredients like strawberry juice and natural fibers, with no harmful additives or processed sugars, making it a great choice for your kids while still feeling like a treat!"</p>
+            </div>
+
+            <div class="oliver-says">
+              <div class="oliver-header">
+                <div class="oliver-avatar">
+                  <img src="oreo.png" alt="" onerror="this.remove();this.parentElement.textContent='🌿'"/>
+                </div>
+                <span class="oliver-title">Oliver Says:</span>
+              </div>
+              <p class="oliver-text">"Oreo Double Stuf contains high-fructose corn syrup, artificial flavors, and palm oil. These ingredients make it a poor choice for families trying to avoid processed foods and harmful additives. Best kept as an occasional treat."</p>
+            </div>
+
+            <div class="oliver-says">
+              <div class="oliver-header">
+                <div class="oliver-avatar">
+                  <img src="whole_milk.png" alt="" onerror="this.remove();this.parentElement.textContent='🌿'"/>
+                </div>
+                <span class="oliver-title">Oliver Says:</span>
+              </div>
+              <p class="oliver-text">"Organic Valley Whole Milk scores well due to its clean, minimal ingredients — just organic whole milk with no additives. A great source of calcium and protein for growing kids and the whole family."</p>
+            </div>
+
+            <div class="oliver-says">
+              <div class="oliver-header">
+                <div class="oliver-avatar">
+                  <img src="green_smoothie.png" alt="" onerror="this.remove();this.parentElement.textContent='🌿'"/>
+                </div>
+                <span class="oliver-title">Oliver Says:</span>
+              </div>
+              <p class="oliver-text">"This cold-pressed green smoothie is packed with organic vegetables and fruits, with no added sugar or preservatives. One of the cleanest bottled drinks you can find — highly recommended for the whole family!"</p>
+            </div>
+
+          </div><!-- /oliver-track -->
+        </div>
+
+        <div class="breakdown-label">Breakdown</div>
+
+      </div><!-- /phone -->
+    </div><!-- /phone-wrapper -->
+  </section>
+
+  <!-- SECTION 2 TEASER -->
+  <!-- <div class="section-teaser">
+    <h2>How the Olive Food <span class="olive-leaf-icon">🌿</span></h2>
+  </div> -->
+
+</div><!-- /page-card -->
+
+<script>
+  const CARD_W   = 296;   // width of each product card (px)
+  const THUMB_W  = 66;    // thumb width + gap (60 + 6)
+  const NUM      = 5;
+  let current    = 0;
+
+  const cardTrack   = document.getElementById('cardTrack');
+  const oliverTrack = document.getElementById('oliverTrack');
+  const thumbRow    = document.getElementById('thumbRow');
+  const thumbs      = thumbRow.querySelectorAll('.phone-thumb');
+
+  function goTo(idx) {
+    // slide product card
+    cardTrack.style.transform   = `translateX(-${idx * CARD_W}px)`;
+    // slide oliver says
+    oliverTrack.style.transform = `translateX(-${idx * CARD_W}px)`;
+
+    // slide thumbnail strip so active thumb stays visible
+    // keep active thumb in view: shift strip leftward when idx > 1
+    const maxShift   = (NUM - 4) * THUMB_W;   // max shift so we don't show blank space
+    const thumbShift = Math.min(Math.max(0, (idx - 1) * THUMB_W), maxShift);
+    thumbRow.style.transform = `translateX(-${thumbShift}px)`;
+
+    // update active highlight
+    thumbs.forEach((t, i) => t.classList.toggle('active', i === idx));
+
+    current = idx;
+  }
+
+  // Auto-advance every 3 seconds
+  setInterval(() => goTo((current + 1) % NUM), 3000);
+
+  // Start at product 0
+  goTo(0);
+</script>
+
+</body>
+</html>
